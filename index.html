@@ -8,6 +8,71 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; font-size: 15px; }
+
+/* Smooth tap highlight on mobile */
+button, a, tr { -webkit-tap-highlight-color: transparent; }
+input { -webkit-appearance: none; }
+
+/* Responsive table */
+table { min-width: 600px; }
+
+/* Mobile-first responsive */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+  
+  /* Metric cards: 2 per row on tablet */
+  .metrics-row { gap: 8px !important; }
+  .metrics-row > div { min-width: 120px !important; flex: 1 1 calc(50% - 8px) !important; }
+  
+  /* Smaller headings */
+  h1 { font-size: 22px !important; }
+  h2 { font-size: 16px !important; }
+  
+  /* Tighter padding */
+  main { padding: 16px 12px !important; }
+  
+  /* Chart height */
+  .chart-container { height: 200px !important; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  
+  /* Metric cards: stack on small phones */
+  .metrics-row > div { flex: 1 1 100% !important; min-width: 0 !important; }
+  
+  h1 { font-size: 20px !important; }
+  
+  main { padding: 12px 8px !important; }
+  
+  /* Smaller table font */
+  table { font-size: 12px !important; min-width: 500px; }
+  table th { font-size: 10px !important; padding: 8px 4px !important; }
+  table td { padding: 6px 4px !important; }
+  
+  /* Filter buttons */
+  .filter-bar button { padding: 6px 10px !important; font-size: 12px !important; }
+  
+  /* Login form tighter */
+  .login-card { padding: 28px 20px !important; }
+  
+  /* Chart height */
+  .chart-container { height: 180px !important; }
+  
+  /* Header */
+  header { height: 48px !important; padding: 0 12px !important; }
+  header img { height: 26px !important; }
+}
+
+/* Ensure smooth scrolling */
+html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+
+/* Better touch targets */
+@media (pointer: coarse) {
+  button { min-height: 44px; }
+  table tr { min-height: 44px; }
+  input { min-height: 44px; }
+}
 </style>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -347,7 +412,7 @@ function ProfitChart({ inv, defaultRange }) {
           })}
         </div>
       </div>
-      <div style={{ width: "100%", height: 240 }}>
+      <div className="chart-container" style={{ width: "100%", height: 240 }}>
         <ResponsiveContainer>
           <AreaChart data={data} margin={{ top: 5, right: 10, left: 10, bottom: 5 }}>
             <defs>
@@ -422,7 +487,7 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: C.dark }}>{title || "Сделки"}</div>
-        <div style={{ display: "flex", gap: 4, background: C.white, borderRadius: 8, padding: 3, border: "1px solid " + C.gl }}>
+        <div className="filter-bar" style={{ display: "flex", gap: 4, background: C.white, borderRadius: 8, padding: 3, border: "1px solid " + C.gl }}>
           {filters.map(function(f) {
             return (
               <button key={f.id} onClick={function() { setFlt(f.id); setExpanded(null); }} style={{
@@ -535,7 +600,7 @@ function LoginScreen({ onLogin }) {
 
   return (
     <div style={{ minHeight: "100vh", background: C.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: 20, fontFamily: "system-ui, sans-serif" }}>
-      <div style={{ width: "100%", maxWidth: 420, background: C.white, borderRadius: 16, padding: "40px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
+      <div className="login-card" style={{ width: "100%", maxWidth: 420, background: C.white, borderRadius: 16, padding: "40px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}><Logo height={48} /></div>
           <p style={{ color: C.beige, fontSize: 13, letterSpacing: 2, textTransform: "uppercase", margin: 0 }}>Личный кабинет</p>
@@ -577,7 +642,7 @@ function InvestorPortal({ investorId, onLogout }) {
         <div style={{ marginBottom: 20 }}>
           <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, margin: "4px 0" }}>{inv.name}</h1>
         </div>
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
+        <div className="metrics-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
           <MetricCard label="Текущий баланс" value={"$" + fmtI(inv.balance)} />
           <MetricCard label="Свободные средства" value={"$" + fmtI(inv.free)} />
           <MetricCard label="Доходность" value={(pp >= 0 ? "+" : "") + pp.toFixed(2) + "%"} color={pnl >= 0 ? C.green : C.red} sub={(pnl >= 0 ? "+$" : "\u2212$") + fmtI(Math.abs(pnl))} />
@@ -610,14 +675,14 @@ function InvestorDetail({ inv, onBack }) {
         <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, margin: 0 }}>{inv.name}</h1>
       </div>
       <p style={{ fontSize: 14, color: C.gray, marginBottom: 20 }}>Комиссия: {inv.fee} &middot; Тел: +7 {fmtPh(inv.phone)}</p>
-      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
+      <div className="metrics-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
         <MetricCard label="Вложено" value={"$" + fmtI(inv.deposit)} />
         <MetricCard label="Баланс" value={"$" + fmtI(inv.balance)} />
         <MetricCard label="Свободные" value={"$" + fmtI(inv.free)} />
         <MetricCard label="P&L" value={pp.toFixed(2) + "%"} color={pnl >= 0 ? C.green : C.red} sub={(pnl >= 0 ? "+$" : "\u2212$") + fmtI(Math.abs(pnl))} />
         <MetricCard label="Win/Loss" value={wins + "/" + losses} sub={closed.length > 0 ? "WR: " + ((wins / closed.length) * 100).toFixed(0) + "%" : ""} color={C.teal} />
       </div>
-      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
+      <div className="metrics-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
         <MetricCard label="Entry Fee 2%" value={"$" + fmt(totalEntryFee)} color="#8B5CF6" />
         <MetricCard label="Success Fee 5%" value={"$" + fmt(totalSuccessFee)} color="#8B5CF6" />
       </div>
@@ -664,7 +729,7 @@ function AdminPanel({ onLogout }) {
           <div>
             <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 4 }}>Обзор портфеля</h1>
             <p style={{ fontSize: 14, color: C.gray, marginBottom: 24 }}>Fiorex Group</p>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
+            <div className="metrics-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
               <MetricCard label="Всего вложено" value={"$" + fmtI(tD)} />
               <MetricCard label="Текущий баланс" value={"$" + fmtI(tB)} />
               <MetricCard label="Общий P&L" value={(tP >= 0 ? "+$" : "\u2212$") + fmtI(Math.abs(tP))} color={tP >= 0 ? C.green : C.red} />
