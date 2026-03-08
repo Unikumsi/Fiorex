@@ -433,6 +433,52 @@ function ProfitChart({ inv, defaultRange }) {
   );
 }
 
+function DealCard({ deal, showStatus, isOpen, onToggle }) {
+  var d = deal;
+  var pos = d.pnl > 0;
+  var pnlColor = Math.abs(d.pnl) < 0.01 ? C.gray : pos ? C.green : C.red;
+  return (
+    <div onClick={onToggle} style={{ background: C.white, borderRadius: 12, padding: "16px", marginBottom: 8, boxShadow: "0 1px 3px rgba(0,0,0,0.05)", cursor: "pointer", border: isOpen ? "1.5px solid " + C.teal : "1px solid " + C.gl, transition: "border 0.15s" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: C.dark }}>{d.name}</span>
+            <span style={{ fontSize: 12, fontWeight: 700, color: C.teal, background: "rgba(61,121,121,0.08)", padding: "2px 8px", borderRadius: 4 }}>{d.ticker}</span>
+            {showStatus ? <Badge status={d.status} /> : null}
+          </div>
+          <div style={{ fontSize: 13, color: C.gray }}>{fmtD(d.dateIn)} — {fmtD(d.dateOut)}</div>
+        </div>
+        <div style={{ textAlign: "right", minWidth: 90 }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: pnlColor }}>{pos ? "+" : ""}{d.pct.toFixed(2)}%</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: pnlColor }}>{pos ? "+$" : "\u2212$"}{fmt(Math.abs(d.pnl))}</div>
+        </div>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 16px" }}>
+        <div>
+          <div style={{ fontSize: 11, color: C.beige, textTransform: "uppercase", fontWeight: 600, letterSpacing: 0.5 }}>Сумма входа</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>${fmt(d.buy)}</div>
+        </div>
+        <div>
+          <div style={{ fontSize: 11, color: C.beige, textTransform: "uppercase", fontWeight: 600, letterSpacing: 0.5 }}>Текущая сумма</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>${fmt(d.sell)}</div>
+        </div>
+      </div>
+      {isOpen ? (
+        <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid " + C.gl, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 16px" }}>
+          <div>
+            <div style={{ fontSize: 11, color: C.beige, textTransform: "uppercase", fontWeight: 600, letterSpacing: 0.5 }}>Entry Fee</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>{d.entryFee != null ? "$" + fmt(d.entryFee) : "\u2014"}</div>
+          </div>
+          <div>
+            <div style={{ fontSize: 11, color: C.beige, textTransform: "uppercase", fontWeight: 600, letterSpacing: 0.5 }}>Success Fee</div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>{d.successFee && d.successFee > 0 ? "$" + fmt(d.successFee) : "\u2014"}</div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title }) {
   var _df = defaultFilter || "active";
   var _s = useState(_df);
@@ -446,30 +492,9 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
     if (flt === "closed") return d.status === "closed";
     return true;
   });
-  var cn = {
-    all: deals.length,
-    active: deals.filter(function(d) { return d.status === "active"; }).length,
-    closed: deals.filter(function(d) { return d.status === "closed"; }).length,
-  };
 
   var showStatus = (flt === "all");
   var isInvestorView = !spMode && !showFees && !showInvestor;
-
-  var headers;
-  if (spMode) {
-    headers = ["Название", "Тикер", "Вход", "Выход", "Сумма покупки", "Покупка клиент", "Кол-во", "Цена", "Entry Fee", "Сумма продажи", "Итог", "Success Fee", "P&L", "Статус"];
-  } else if (showFees) {
-    headers = ["Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "EF 2%", "SF 5%", "P&L", "P&L %"];
-    if (showStatus) headers.push("Статус");
-  } else if (showInvestor) {
-    headers = ["Инв.", "Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "P&L", "P&L%"];
-    if (showStatus) headers.push("Статус");
-  } else {
-    headers = ["Название", "Тикер", "Дата входа", "Дата выхода", "Сумма входа", "Текущая сумма", "P&L", "P&L %"];
-    if (showStatus) headers.push("Статус");
-  }
-
-  var colCount = headers.length;
 
   var filters = [
     { id: "active", l: "Активные" },
@@ -479,6 +504,46 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
 
   function toggleExpand(i) {
     setExpanded(expanded === i ? null : i);
+  }
+
+  /* Card-based layout for investor view */
+  if (isInvestorView) {
+    return (
+      <div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 8 }}>
+          <div style={{ fontSize: 18, fontWeight: 700, color: C.dark }}>{title || "Сделки"}</div>
+          <div className="filter-bar" style={{ display: "flex", gap: 4, background: C.white, borderRadius: 8, padding: 3, border: "1px solid " + C.gl }}>
+            {filters.map(function(f) {
+              return (
+                <button key={f.id} onClick={function() { setFlt(f.id); setExpanded(null); }} style={{
+                  padding: "7px 14px", border: "none", borderRadius: 5, cursor: "pointer",
+                  fontSize: 13, fontWeight: 600, fontFamily: "inherit",
+                  background: flt === f.id ? C.teal : "transparent",
+                  color: flt === f.id ? "#fff" : C.gray,
+                }}>{f.l}</button>
+              );
+            })}
+          </div>
+        </div>
+        <div>
+          {filtered.map(function(d, i) {
+            return <DealCard key={i} deal={d} showStatus={showStatus} isOpen={expanded === i} onToggle={function() { toggleExpand(i); }} />;
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  /* Table layout for admin/SP/fees views */
+  var headers;
+  if (spMode) {
+    headers = ["Название", "Тикер", "Вход", "Выход", "Сумма покупки", "Покупка клиент", "Кол-во", "Цена", "Entry Fee", "Сумма продажи", "Итог", "Success Fee", "P&L", "Статус"];
+  } else if (showFees) {
+    headers = ["Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "EF 2%", "SF 5%", "P&L", "P&L %"];
+    if (showStatus) headers.push("Статус");
+  } else if (showInvestor) {
+    headers = ["Инв.", "Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "P&L", "P&L%"];
+    if (showStatus) headers.push("Статус");
   }
 
   var cellBase = { padding: "8px", textAlign: "center" };
@@ -512,7 +577,6 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
             </thead>
             <tbody>
               {filtered.map(function(d, i) {
-                var isOpen = expanded === i;
                 if (spMode) {
                   return (
                     <tr key={i} style={{ borderBottom: "1px solid " + C.bg }}>
@@ -533,13 +597,9 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
                     </tr>
                   );
                 }
-
-                var mainRow = (
-                  <tr key={"row-" + i} onClick={isInvestorView ? function() { toggleExpand(i); } : undefined} style={{ borderBottom: isOpen ? "none" : "1px solid " + C.bg, cursor: isInvestorView ? "pointer" : "default", background: isOpen ? "rgba(61,121,121,0.03)" : "transparent", transition: "background 0.15s" }}>
-                    {showInvestor
-                      ? <td style={Object.assign({}, cellBase, { fontSize: 12, fontWeight: 700, color: C.teal })}>{d.iid}</td>
-                      : null
-                    }
+                return (
+                  <tr key={i} style={{ borderBottom: "1px solid " + C.bg }}>
+                    {showInvestor ? <td style={Object.assign({}, cellBase, { fontSize: 12, fontWeight: 700, color: C.teal })}>{d.iid}</td> : null}
                     <td style={Object.assign({}, cellBase, { textAlign: "left", fontWeight: 600, whiteSpace: "nowrap", color: C.dark })}>{d.name}</td>
                     <td style={Object.assign({}, cellBase, { color: C.teal, fontWeight: 700, fontSize: 13 })}>{d.ticker}</td>
                     <td style={Object.assign({}, cellBase, { color: C.gray })}>{fmtD(d.dateIn)}</td>
@@ -553,28 +613,6 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
                     {showStatus ? <td style={cellBase}><Badge status={d.status} /></td> : null}
                   </tr>
                 );
-
-                if (isInvestorView && isOpen) {
-                  var expandRow = (
-                    <tr key={"exp-" + i} style={{ borderBottom: "1px solid " + C.bg, background: "rgba(61,121,121,0.03)" }}>
-                      <td colSpan={colCount} style={{ padding: "0 12px 14px 16px" }}>
-                        <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                            <span style={{ fontSize: 14, color: C.gray }}>Entry Fee:</span>
-                            <span style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>{d.entryFee != null ? "$" + fmt(d.entryFee) : "\u2014"}</span>
-                          </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                            <span style={{ fontSize: 14, color: C.gray }}>Success Fee:</span>
-                            <span style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>{d.successFee && d.successFee > 0 ? "$" + fmt(d.successFee) : "\u2014"}</span>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                  return [mainRow, expandRow];
-                }
-
-                return mainRow;
               })}
             </tbody>
           </table>
