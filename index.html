@@ -7,7 +7,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect width='36' height='36' rx='4' fill='%233d7979'/><path d='M8 8H28V14H14V16.5H24V22H14V30H8V8Z' fill='white'/></svg>">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+body { font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; font-size: 15px; }
 </style>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -132,6 +132,41 @@ const INVESTORS_DB = {
       { n: 20, name: "SOLV Energy", ticker: "MWH", dateIn: "2026-02-11", dateOut: "2026-05-15", buy: 921.18, sell: 1117.49, pnl: 196.3, pct: 21.31, entryFee: 64.48, successFee: 43.94, status: "active" },
     ],
   },
+  "0004": {
+    id: "0004", name: "Иванов Иван Иванович", phone: "9005550101",
+    fee: "5/20", deposit: 100000, balance: 135373, free: 36551, startDate: "2025-06-25",
+    deals: [
+      { n: 1, name: "Jefferson Capital", ticker: "JCAP", dateIn: "2025-06-26", dateOut: "2025-09-29", buy: 33210.0, sell: 37208.48, pnl: 3998.48, pct: 12.04, entryFee: 2324.7, successFee: 564.58, status: "closed" },
+      { n: 2, name: "Carlsmed", ticker: "CARL", dateIn: "2025-07-23", dateOut: "2025-10-24", buy: 10230.0, sell: 8831.9, pnl: -1398.1, pct: -13.67, entryFee: 716.1, successFee: 0, status: "closed" },
+      { n: 3, name: "Accelerant Holdings", ticker: "ARX", dateIn: "2025-07-24", dateOut: "2025-10-27", buy: 9702.0, sell: 11487.17, pnl: 1785.17, pct: 18.4, entryFee: 679.14, successFee: 357.03, status: "closed" },
+      { n: 4, name: "Figma", ticker: "FIG", dateIn: "2025-07-31", dateOut: "2025-11-03", buy: 15708.0, sell: 22015.0, pnl: 6307.0, pct: 40.15, entryFee: 1099.56, successFee: 1646.96, status: "closed" },
+      { n: 5, name: "Firefly Aerospace", ticker: "FLY", dateIn: "2025-08-07", dateOut: "2025-11-10", buy: 7830.0, sell: 9560.43, pnl: 1730.43, pct: 22.1, entryFee: 548.1, successFee: 346.09, status: "closed" },
+      { n: 6, name: "WhiteFiber", ticker: "WYFI", dateIn: "2025-08-07", dateOut: "2025-11-10", buy: 5202.0, sell: 8350.74, pnl: 3148.74, pct: 60.53, entryFee: 364.14, successFee: 876.7, status: "closed" },
+      { n: 7, name: "Bullish", ticker: "BLSH", dateIn: "2025-08-13", dateOut: "2025-11-14", buy: 4070.0, sell: 4423.1, pnl: 353.1, pct: 8.68, entryFee: 284.9, successFee: 26.4, status: "closed" },
+      { n: 8, name: "Klarna Group", ticker: "KLAR", dateIn: "2025-09-10", dateOut: "2025-12-12", buy: 1360.0, sell: 1077.8, pnl: -282.2, pct: -20.75, entryFee: 95.2, successFee: 0, status: "closed" },
+      { n: 9, name: "Figure Technology", ticker: "FIGR", dateIn: "2025-09-11", dateOut: "2025-12-15", buy: 1300.0, sell: 1951.56, pnl: 651.56, pct: 50.12, entryFee: 91.0, successFee: 176.8, status: "closed" },
+      { n: 10, name: "Gemini", ticker: "GEMI", dateIn: "2025-09-12", dateOut: "2025-12-15", buy: 1313.36, sell: 554.42, pnl: -758.94, pct: -57.79, entryFee: 91.94, successFee: 0, status: "closed" },
+      { n: 11, name: "Legence", ticker: "LGN", dateIn: "2025-09-12", dateOut: "2025-12-15", buy: 985.02, sell: 1390.02, pnl: 404.98, pct: 41.11, entryFee: 68.96, successFee: 106.24, status: "closed" },
+      { n: 12, name: "Black Rock Coffee", ticker: "BRCB", dateIn: "2025-09-12", dateOut: "2025-12-15", buy: 327.36, sell: 375.82, pnl: 48.44, pct: 14.8, entryFee: 22.92, successFee: 8.38, status: "closed" },
+      { n: 13, name: "Netskope", ticker: "NTSK", dateIn: "2025-09-18", dateOut: "2025-12-22", buy: 1039.74, sell: 1056.16, pnl: 16.42, pct: 1.58, entryFee: 72.78, successFee: 0, status: "closed" },
+      { n: 14, name: "Pattern", ticker: "PTRN", dateIn: "2025-09-19", dateOut: "2025-12-22", buy: 1402.3, sell: 1201.96, pnl: -200.32, pct: -14.29, entryFee: 98.16, successFee: 0, status: "closed" },
+      { n: 15, name: "Neptune", ticker: "NP", dateIn: "2025-10-01", dateOut: "2026-01-02", buy: 8290.4, sell: 11404.26, pnl: 3113.88, pct: 37.56, entryFee: 580.32, successFee: 802.1, status: "closed" },
+      { n: 16, name: "Phoenix Education", ticker: "PXED", dateIn: "2025-10-09", dateOut: "2026-01-12", buy: 8007.9, sell: 7907.8, pnl: -100.1, pct: -1.25, entryFee: 560.56, successFee: 0, status: "closed" },
+      { n: 17, name: "Navan", ticker: "NAVN", dateIn: "2025-10-30", dateOut: "2026-02-02", buy: 6561.54, sell: 7565.46, pnl: 1003.92, pct: 15.3, entryFee: 459.3, successFee: 200.78, status: "closed" },
+      { n: 18, name: "Exzeo Group", ticker: "XZO", dateIn: "2025-11-05", dateOut: "2026-02-06", buy: 10579.78, sell: 8892.04, pnl: -1687.72, pct: -15.95, entryFee: 740.58, successFee: 0, status: "closed" },
+      { n: 19, name: "BillionToOne", ticker: "BLLN", dateIn: "2025-11-06", dateOut: "2026-02-09", buy: 10655.88, sell: 15010.6, pnl: 4354.7, pct: 40.87, entryFee: 745.92, successFee: 1141.06, status: "closed" },
+      { n: 20, name: "Cardinal Infra", ticker: "CDNL", dateIn: "2025-12-10", dateOut: "2026-03-13", buy: 7875.32, sell: 11320.22, pnl: 3444.9, pct: 43.74, entryFee: 551.28, successFee: 914.1, status: "active" },
+      { n: 21, name: "Wealthfront", ticker: "WLTH", dateIn: "2025-12-12", dateOut: "2026-03-16", buy: 17010.7, sell: 19188.07, pnl: 2177.37, pct: 12.8, entryFee: 1190.74, successFee: 435.47, status: "active" },
+      { n: 22, name: "Andersen Group", ticker: "ANDG", dateIn: "2025-12-17", dateOut: "2026-03-20", buy: 4362.08, sell: 5965.14, pnl: 1603.06, pct: 36.75, entryFee: 305.34, successFee: 411.0, status: "active" },
+      { n: 23, name: "BitGo Holdings", ticker: "BTGO", dateIn: "2026-01-22", dateOut: "2026-04-27", buy: 10171.28, sell: 12775.13, pnl: 2603.85, pct: 25.6, entryFee: 712.0, successFee: 520.77, status: "active" },
+      { n: 24, name: "EquipmentShare", ticker: "EQPT", dateIn: "2026-01-23", dateOut: "2026-04-27", buy: 10305.12, sell: 12206.3, pnl: 1624.0, pct: 15.76, entryFee: 721.36, successFee: 294.96, status: "active" },
+      { n: 25, name: "PicS", ticker: "PICS", dateIn: "2026-01-29", dateOut: "2026-05-04", buy: 3471.16, sell: 3120.38, pnl: -350.76, pct: -10.11, entryFee: 242.98, successFee: 0, status: "active" },
+      { n: 26, name: "Ethos Tech", ticker: "LIFE", dateIn: "2026-01-29", dateOut: "2026-05-04", buy: 3471.16, sell: 2256.24, pnl: -1214.9, pct: -35, entryFee: 242.98, successFee: 0, status: "active" },
+      { n: 27, name: "Bob's Furniture", ticker: "BOBS", dateIn: "2026-02-05", dateOut: "2026-05-11", buy: 3300.08, sell: 3991.56, pnl: 691.46, pct: 20.95, entryFee: 231.0, successFee: 148.02, status: "active" },
+      { n: 28, name: "Forgent Power", ticker: "FPS", dateIn: "2026-02-05", dateOut: "2026-05-11", buy: 3298.94, sell: 4054.28, pnl: 755.34, pct: 22.9, entryFee: 230.92, successFee: 168.0, status: "active" },
+      { n: 29, name: "SOLV Energy", ticker: "MWH", dateIn: "2026-02-11", dateOut: "2026-05-15", buy: 7084.7, sell: 8633.7, pnl: 1549.0, pct: 21.86, entryFee: 495.92, successFee: 337.94, status: "active" },
+    ],
+  },
 };
 
 var SP_DEALS = [
@@ -166,7 +201,9 @@ var SP_DEALS = [
   { n:29, name:"SOLV Energy", ticker:"MWH", dateIn:"2026-02-11", dateOut:"2026-05-15", totalBuy:4751.25, clientBuy:4525, qty:181, buyPrice:25, entryFee:226.25, sellPrice:0, totalSell:0, pnlGross:-4525, successFee:0, pnlNet:-4525, status:"active" },
 ];
 
-const PHONE_MAP = { "9007778899": "0001", "9001112233": "0002", "9004445566": "0003" };
+const PHONE_MAP = { "9007778899": "0001", "9001112233": "0002", "9004445566": "0003", "9005550101": "0004", "9000000001": "admin" };
+const PASS_MAP = { "9007778899": "vertex2025", "9001112233": "irina2025", "9004445566": "saveliy2025", "9005550101": "demo2025", "9000000001": "fiorex2025" };
+const ADMIN_PHONES = { "9000000001": true };
 
 function fmt(v) {
   return v == null || isNaN(v) ? "\u2014" : Number(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -215,7 +252,7 @@ function Badge({ status }) {
   var cl = status === "closed";
   return (
     <span style={{
-      display: "inline-block", padding: "3px 10px", borderRadius: 4, fontSize: 11, fontWeight: 600,
+      display: "inline-block", padding: "4px 12px", borderRadius: 4, fontSize: 12, fontWeight: 600,
       background: cl ? "rgba(26,122,58,0.08)" : "rgba(61,121,121,0.08)",
       color: cl ? C.green : C.teal,
     }}>
@@ -241,9 +278,9 @@ function Card({ children, style, onClick }) {
 function MetricCard({ label, value, sub, color }) {
   return (
     <Card style={{ flex: "1 1 150px", minWidth: 140 }}>
-      <div style={{ fontSize: 11, fontWeight: 600, color: C.beige, textTransform: "uppercase", letterSpacing: 0.8, marginBottom: 6 }}>{label}</div>
-      <div style={{ fontSize: 22, fontWeight: 700, color: color || C.dark }}>{value}</div>
-      {sub ? <div style={{ fontSize: 12, color: C.gray, marginTop: 4 }}>{sub}</div> : null}
+      <div style={{ fontSize: 13, fontWeight: 600, color: C.beige, textTransform: "uppercase", letterSpacing: 0.8, marginBottom: 8 }}>{label}</div>
+      <div style={{ fontSize: 28, fontWeight: 700, color: color || C.dark }}>{value}</div>
+      {sub ? <div style={{ fontSize: 14, color: C.gray, marginTop: 6 }}>{sub}</div> : null}
     </Card>
   );
 }
@@ -257,11 +294,11 @@ function Header({ onLogout, sub }) {
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <Logo height={32} white />
-        {sub ? <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 12, borderLeft: "1px solid rgba(255,255,255,0.2)", paddingLeft: 14 }}>{sub}</span> : null}
+        {sub ? <span style={{ color: "rgba(255,255,255,0.6)", fontSize: 14, borderLeft: "1px solid rgba(255,255,255,0.2)", paddingLeft: 14 }}>{sub}</span> : null}
       </div>
       <button onClick={onLogout} style={{
         padding: "6px 18px", border: "1px solid rgba(255,255,255,0.3)", borderRadius: 6,
-        cursor: "pointer", fontSize: 12, fontWeight: 600, fontFamily: "inherit",
+        cursor: "pointer", fontSize: 13, fontWeight: 600, fontFamily: "inherit",
         background: "transparent", color: "#fff",
       }}>Выйти</button>
     </header>
@@ -296,13 +333,13 @@ function ProfitChart({ inv, defaultRange }) {
   return (
     <Card style={{ marginBottom: 24 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16, flexWrap: "wrap", gap: 8 }}>
-        <div style={{ fontSize: 15, fontWeight: 700, color: C.dark }}>Динамика баланса</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: C.dark }}>Динамика баланса</div>
         <div style={{ display: "flex", gap: 4, background: C.bg, borderRadius: 8, padding: 3 }}>
           {ranges.map(function(r) {
             return (
               <button key={r.id} onClick={function() { setRange(r.id); }} style={{
-                padding: "5px 12px", border: "none", borderRadius: 5, cursor: "pointer",
-                fontSize: 11, fontWeight: 600, fontFamily: "inherit",
+                padding: "6px 14px", border: "none", borderRadius: 5, cursor: "pointer",
+                fontSize: 12, fontWeight: 600, fontFamily: "inherit",
                 background: range === r.id ? C.teal : "transparent",
                 color: range === r.id ? "#fff" : C.gray,
               }}>{r.l}</button>
@@ -322,7 +359,7 @@ function ProfitChart({ inv, defaultRange }) {
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" />
             <XAxis dataKey="date" tick={{ fontSize: 10, fill: C.gray }} tickLine={false} axisLine={{ stroke: C.gl }} interval={Math.max(0, Math.floor(data.length / 7))} />
             <YAxis tick={{ fontSize: 10, fill: C.gray }} tickLine={false} axisLine={false} tickFormatter={function(v) { return "$" + (v / 1000).toFixed(0) + "k"; }} domain={["auto", "auto"]} />
-            <Tooltip contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid " + C.gl }} formatter={function(v) { return ["$" + fmtI(v), "Баланс"]; }} />
+            <Tooltip contentStyle={{ fontSize: 13, borderRadius: 8, border: "1px solid " + C.gl }} formatter={function(v) { return ["$" + fmtI(v), "Баланс"]; }} />
             <Area type="monotone" dataKey="bal" stroke={C.teal} strokeWidth={2} fill="url(#areaGrad)" dot={false} />
           </AreaChart>
         </ResponsiveContainer>
@@ -336,6 +373,9 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
   var _s = useState(_df);
   var flt = _s[0];
   var setFlt = _s[1];
+  var _exp = useState(null);
+  var expanded = _exp[0];
+  var setExpanded = _exp[1];
   var filtered = deals.filter(function(d) {
     if (flt === "active") return d.status === "active";
     if (flt === "closed") return d.status === "closed";
@@ -358,22 +398,29 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
     headers = ["Название", "Тикер", "Дата входа", "Дата выхода", "Сумма входа", "Текущая сумма", "P&L", "P&L %", "Статус"];
   }
 
+  var isInvestorView = !spMode && !showFees && !showInvestor;
+  var colCount = headers.length;
+
   var filters = [
     { id: "active", l: "Активные (" + cn.active + ")" },
     { id: "closed", l: "Закрытые (" + cn.closed + ")" },
     { id: "all", l: "Все (" + cn.all + ")" },
   ];
 
+  function toggleExpand(i) {
+    setExpanded(expanded === i ? null : i);
+  }
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
-        <div style={{ fontSize: 15, fontWeight: 700, color: C.dark }}>{title || "Сделки"}</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: C.dark }}>{title || "Сделки"}</div>
         <div style={{ display: "flex", gap: 4, background: C.white, borderRadius: 8, padding: 3, border: "1px solid " + C.gl }}>
           {filters.map(function(f) {
             return (
-              <button key={f.id} onClick={function() { setFlt(f.id); }} style={{
-                padding: "6px 12px", border: "none", borderRadius: 5, cursor: "pointer",
-                fontSize: 12, fontWeight: 600, fontFamily: "inherit",
+              <button key={f.id} onClick={function() { setFlt(f.id); setExpanded(null); }} style={{
+                padding: "7px 14px", border: "none", borderRadius: 5, cursor: "pointer",
+                fontSize: 13, fontWeight: 600, fontFamily: "inherit",
                 background: flt === f.id ? C.teal : "transparent",
                 color: flt === f.id ? "#fff" : C.gray,
               }}>{f.l}</button>
@@ -381,57 +428,83 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
           })}
         </div>
       </div>
-      <Card style={{ padding: 0, overflow: "hidden" }}>
+      <Card style={{ padding: 0, overflow: "hidden", borderRadius: 12 }}>
         <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "auto" }}>
             <thead>
               <tr style={{ borderBottom: "2px solid " + C.gl }}>
+                {isInvestorView ? <th style={{ width: 28 }}></th> : null}
                 {headers.map(function(h) {
-                  return <th key={h} style={{ padding: "12px 10px", textAlign: "left", fontSize: 10, fontWeight: 700, color: C.beige, textTransform: "uppercase", whiteSpace: "nowrap" }}>{h}</th>;
+                  return <th key={h} style={{ padding: "12px 8px", textAlign: "left", fontSize: 12, fontWeight: 700, color: C.beige, textTransform: "uppercase", whiteSpace: "nowrap", letterSpacing: 0.5 }}>{h}</th>;
                 })}
               </tr>
             </thead>
             <tbody>
               {filtered.map(function(d, i) {
+                var isOpen = expanded === i;
                 if (spMode) {
                   return (
                     <tr key={i} style={{ borderBottom: "1px solid " + C.bg }}>
-                      <td style={{ padding: "10px", fontWeight: 600, whiteSpace: "nowrap", color: C.dark }}>{d.name}</td>
-                      <td style={{ padding: "10px", color: C.teal, fontWeight: 700, fontSize: 12 }}>{d.ticker}</td>
-                      <td style={{ padding: "10px", fontSize: 12, color: C.gray }}>{fmtD(d.dateIn)}</td>
-                      <td style={{ padding: "10px", fontSize: 12, color: C.gray }}>{fmtD(d.dateOut)}</td>
-                      <td style={{ padding: "10px" }}>${fmt(d.totalBuy)}</td>
-                      <td style={{ padding: "10px" }}>${fmt(d.clientBuy)}</td>
-                      <td style={{ padding: "10px", color: C.gray }}>{d.qty}</td>
-                      <td style={{ padding: "10px" }}>${fmt(d.buyPrice)}</td>
-                      <td style={{ padding: "10px", color: "#8B5CF6", fontWeight: 600 }}>${fmt(d.entryFee)}</td>
-                      <td style={{ padding: "10px" }}>{d.totalSell ? "$" + fmt(d.totalSell) : "\u2014"}</td>
-                      <td style={{ padding: "10px" }}><PnlCell value={d.pnlGross} /></td>
-                      <td style={{ padding: "10px", color: "#8B5CF6", fontWeight: 600 }}>{d.successFee ? "$" + fmt(d.successFee) : "\u2014"}</td>
-                      <td style={{ padding: "10px" }}><PnlCell value={d.pnlNet} /></td>
-                      <td style={{ padding: "10px" }}><Badge status={d.status} /></td>
+                      <td style={{ padding: "8px", fontWeight: 600, whiteSpace: "nowrap", color: C.dark }}>{d.name}</td>
+                      <td style={{ padding: "8px", color: C.teal, fontWeight: 700, fontSize: 13 }}>{d.ticker}</td>
+                      <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateIn)}</td>
+                      <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateOut)}</td>
+                      <td style={{ padding: "8px" }}>${fmt(d.totalBuy)}</td>
+                      <td style={{ padding: "8px" }}>${fmt(d.clientBuy)}</td>
+                      <td style={{ padding: "8px", color: C.gray }}>{d.qty}</td>
+                      <td style={{ padding: "8px" }}>${fmt(d.buyPrice)}</td>
+                      <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>${fmt(d.entryFee)}</td>
+                      <td style={{ padding: "8px" }}>{d.totalSell ? "$" + fmt(d.totalSell) : "\u2014"}</td>
+                      <td style={{ padding: "8px" }}><PnlCell value={d.pnlGross} /></td>
+                      <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>{d.successFee ? "$" + fmt(d.successFee) : "\u2014"}</td>
+                      <td style={{ padding: "8px" }}><PnlCell value={d.pnlNet} /></td>
+                      <td style={{ padding: "8px" }}><Badge status={d.status} /></td>
                     </tr>
                   );
                 }
-                return (
-                  <tr key={i} style={{ borderBottom: "1px solid " + C.bg }}>
+
+                var mainRow = (
+                  <tr key={"row-" + i} onClick={isInvestorView ? function() { toggleExpand(i); } : undefined} style={{ borderBottom: isOpen ? "none" : "1px solid " + C.bg, cursor: isInvestorView ? "pointer" : "default", background: isOpen ? "rgba(61,121,121,0.03)" : "transparent", transition: "background 0.15s" }}>
+                    {isInvestorView ? <td style={{ padding: "8px 4px 8px 10px", fontSize: 16, color: C.teal, fontWeight: 500, width: 28 }}>{isOpen ? "\u25BC" : "\u25B6"}</td> : null}
                     {showInvestor
-                      ? <td style={{ padding: "10px", fontSize: 11, fontWeight: 700, color: C.teal }}>{d.iid}</td>
+                      ? <td style={{ padding: "8px", fontSize: 12, fontWeight: 700, color: C.teal }}>{d.iid}</td>
                       : null
                     }
-                    <td style={{ padding: "10px", fontWeight: 600, whiteSpace: "nowrap", color: C.dark }}>{d.name}</td>
-                    <td style={{ padding: "10px", color: C.teal, fontWeight: 700, fontSize: 12 }}>{d.ticker}</td>
-                    <td style={{ padding: "10px", fontSize: 12, color: C.gray }}>{fmtD(d.dateIn)}</td>
-                    <td style={{ padding: "10px", fontSize: 12, color: C.gray }}>{fmtD(d.dateOut)}</td>
-                    <td style={{ padding: "10px" }}>${fmt(d.buy)}</td>
-                    <td style={{ padding: "10px", fontWeight: 500 }}>${fmt(d.sell)}</td>
-                    {showFees ? <td style={{ padding: "10px", color: "#8B5CF6", fontWeight: 600 }}>${fmt(d.entryFee * 2 / 7)}</td> : null}
-                    {showFees ? <td style={{ padding: "10px", color: "#8B5CF6", fontWeight: 600 }}>{d.successFee ? "$" + fmt(d.successFee * 5 / 25) : "\u2014"}</td> : null}
-                    <td style={{ padding: "10px" }}><PnlCell value={d.pnl} /></td>
-                    <td style={{ padding: "10px" }}><PnlCell value={d.pct} isPct /></td>
-                    <td style={{ padding: "10px" }}><Badge status={d.status} /></td>
+                    <td style={{ padding: "8px", fontWeight: 600, whiteSpace: "nowrap", color: C.dark }}>{d.name}</td>
+                    <td style={{ padding: "8px", color: C.teal, fontWeight: 700, fontSize: 13 }}>{d.ticker}</td>
+                    <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateIn)}</td>
+                    <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateOut)}</td>
+                    <td style={{ padding: "8px" }}>${fmt(d.buy)}</td>
+                    <td style={{ padding: "8px", fontWeight: 500 }}>${fmt(d.sell)}</td>
+                    {showFees ? <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>${fmt(d.entryFee * 2 / 7)}</td> : null}
+                    {showFees ? <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>{d.successFee ? "$" + fmt(d.successFee * 5 / 25) : "\u2014"}</td> : null}
+                    <td style={{ padding: "8px" }}><PnlCell value={d.pnl} /></td>
+                    <td style={{ padding: "8px" }}><PnlCell value={d.pct} isPct /></td>
+                    <td style={{ padding: "8px" }}><Badge status={d.status} /></td>
                   </tr>
                 );
+
+                if (isInvestorView && isOpen) {
+                  var expandRow = (
+                    <tr key={"exp-" + i} style={{ borderBottom: "1px solid " + C.bg, background: "rgba(61,121,121,0.03)" }}>
+                      <td colSpan={colCount + 1} style={{ padding: "0 12px 14px 42px" }}>
+                        <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <span style={{ fontSize: 14, color: C.gray }}>Entry Fee:</span>
+                            <span style={{ fontSize: 16, fontWeight: 700, color: "#8B5CF6" }}>{d.entryFee != null ? "$" + fmt(d.entryFee) : "\u2014"}</span>
+                          </div>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <span style={{ fontSize: 14, color: C.gray }}>Success Fee:</span>
+                            <span style={{ fontSize: 16, fontWeight: 700, color: "#8B5CF6" }}>{d.successFee && d.successFee > 0 ? "$" + fmt(d.successFee) : "\u2014"}</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                  return [mainRow, expandRow];
+                }
+
+                return mainRow;
               })}
             </tbody>
           </table>
@@ -442,17 +515,17 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
 }
 
 function LoginScreen({ onLogin }) {
-  var _m = useState("investor"); var mode = _m[0]; var setMode = _m[1];
   var _p = useState(""); var ph = _p[0]; var setPh = _p[1];
-  var _n = useState(""); var pin = _n[0]; var setPin = _n[1];
+  var _pw = useState(""); var pw = _pw[0]; var setPw = _pw[1];
   var _e = useState(""); var err = _e[0]; var setErr = _e[1];
+  var _showPw = useState(false); var showPw = _showPw[0]; var setShowPw = _showPw[1];
 
-  function goInv() {
+  function go() {
     var id = PHONE_MAP[ph];
-    if (id) onLogin("investor", id); else setErr("Номер не найден. Проверьте данные.");
-  }
-  function goAdm() {
-    if (pin === "1234") onLogin("admin", null); else setErr("Неверный PIN-код");
+    if (!id) { setErr("Номер не найден. Проверьте данные."); return; }
+    if (PASS_MAP[ph] !== pw) { setErr("Неверный пароль"); return; }
+    if (ADMIN_PHONES[ph]) { onLogin("admin", null); }
+    else { onLogin("investor", id); }
   }
 
   return (
@@ -460,35 +533,27 @@ function LoginScreen({ onLogin }) {
       <div style={{ width: "100%", maxWidth: 420, background: C.white, borderRadius: 16, padding: "40px 32px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}><Logo height={48} /></div>
-          <p style={{ color: C.beige, fontSize: 12, letterSpacing: 2, textTransform: "uppercase", margin: 0 }}>Инвестиционная платформа</p>
-        </div>
-        <div style={{ display: "flex", gap: 4, background: C.bg, borderRadius: 8, padding: 3, marginBottom: 24 }}>
-          {[{ id: "investor", l: "Инвестор" }, { id: "admin", l: "Управление" }].map(function(t) {
-            return <button key={t.id} onClick={function() { setMode(t.id); setErr(""); }} style={{ flex: 1, padding: "10px 0", border: "none", borderRadius: 6, cursor: "pointer", fontSize: 14, fontWeight: 600, fontFamily: "inherit", background: mode === t.id ? C.teal : "transparent", color: mode === t.id ? "#fff" : C.gray }}>{t.l}</button>;
-          })}
+          <p style={{ color: C.beige, fontSize: 13, letterSpacing: 2, textTransform: "uppercase", margin: 0 }}>Личный кабинет</p>
         </div>
 
-        {mode === "investor" ? (
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: C.dark, marginBottom: 6 }}>Номер телефона</label>
-            <div style={{ display: "flex", alignItems: "center", border: "1.5px solid " + C.gl, borderRadius: 8, overflow: "hidden" }}>
-              <span style={{ padding: "12px 0 12px 14px", fontSize: 16, color: C.gray, fontWeight: 600, whiteSpace: "nowrap" }}>+7 </span>
-              <input type="tel" placeholder="(900) 111-22-33" value={fmtPh(ph)} onChange={function(e) { setPh(e.target.value.replace(/\D/g, "").slice(0, 10)); setErr(""); }} onKeyDown={function(e) { if (e.key === "Enter") goInv(); }}
-                style={{ flex: 1, padding: "12px 14px 12px 2px", border: "none", fontSize: 16, fontFamily: "inherit", outline: "none", background: "transparent" }} />
-            </div>
-            <p style={{ fontSize: 11, color: C.gray, marginTop: 6 }}>Демо: 900 777 88 99, 900 111 22 33, 900 444 55 66</p>
-            <button onClick={goInv} style={{ width: "100%", padding: "14px 0", marginTop: 16, border: "none", borderRadius: 8, cursor: "pointer", fontSize: 15, fontWeight: 700, fontFamily: "inherit", background: C.teal, color: "#fff" }}>Войти</button>
+        <div>
+          <label style={{ display: "block", fontSize: 14, fontWeight: 600, color: C.dark, marginBottom: 6 }}>Номер телефона</label>
+          <div style={{ display: "flex", alignItems: "center", border: "1.5px solid " + C.gl, borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
+            <span style={{ padding: "12px 0 12px 14px", fontSize: 16, color: C.gray, fontWeight: 600, whiteSpace: "nowrap" }}>+7 </span>
+            <input type="tel" placeholder="(900) 111-22-33" value={fmtPh(ph)} onChange={function(e) { setPh(e.target.value.replace(/\D/g, "").slice(0, 10)); setErr(""); }} onKeyDown={function(e) { if (e.key === "Enter") go(); }}
+              style={{ flex: 1, padding: "12px 14px 12px 2px", border: "none", fontSize: 16, fontFamily: "inherit", outline: "none", background: "transparent" }} />
           </div>
-        ) : (
-          <div>
-            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: C.dark, marginBottom: 6 }}>PIN-код администратора</label>
-            <input type="password" placeholder="----" value={pin} onChange={function(e) { setPin(e.target.value); setErr(""); }} onKeyDown={function(e) { if (e.key === "Enter") goAdm(); }}
-              style={{ width: "100%", padding: "12px 16px", borderRadius: 8, border: "1.5px solid " + C.gl, fontSize: 20, fontFamily: "inherit", outline: "none", boxSizing: "border-box", letterSpacing: 8, textAlign: "center" }} />
-            <p style={{ fontSize: 11, color: C.gray, marginTop: 6 }}>Демо PIN: 1234</p>
-            <button onClick={goAdm} style={{ width: "100%", padding: "14px 0", marginTop: 16, border: "none", borderRadius: 8, cursor: "pointer", fontSize: 15, fontWeight: 700, fontFamily: "inherit", background: C.teal, color: "#fff" }}>Войти</button>
+          <label style={{ display: "block", fontSize: 14, fontWeight: 600, color: C.dark, marginBottom: 6 }}>Пароль</label>
+          <div style={{ position: "relative", marginBottom: 6 }}>
+            <input type={showPw ? "text" : "password"} placeholder="Введите пароль" value={pw} onChange={function(e) { setPw(e.target.value); setErr(""); }} onKeyDown={function(e) { if (e.key === "Enter") go(); }}
+              style={{ width: "100%", padding: "12px 44px 12px 16px", borderRadius: 8, border: "1.5px solid " + C.gl, fontSize: 16, fontFamily: "inherit", outline: "none", boxSizing: "border-box" }} />
+            <button onClick={function() { setShowPw(!showPw); }} style={{ position: "absolute", right: 8, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", fontSize: 18, color: C.gray, padding: 4 }}>
+              {showPw ? "\u{1F441}" : "\u{1F441}\u200D\u{1F5E8}"}
+            </button>
           </div>
-        )}
-        {err ? <p style={{ color: C.red, fontSize: 13, textAlign: "center", marginTop: 12, fontWeight: 500 }}>{err}</p> : null}
+          <button onClick={go} style={{ width: "100%", padding: "14px 0", marginTop: 20, border: "none", borderRadius: 8, cursor: "pointer", fontSize: 16, fontWeight: 700, fontFamily: "inherit", background: C.teal, color: "#fff" }}>Войти</button>
+        </div>
+        {err ? <p style={{ color: C.red, fontSize: 14, textAlign: "center", marginTop: 12, fontWeight: 500 }}>{err}</p> : null}
       </div>
     </div>
   );
@@ -505,17 +570,17 @@ function InvestorPortal({ investorId, onLogout }) {
       <Header onLogout={onLogout} sub="Личный кабинет" />
       <main style={{ padding: "24px 20px", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ marginBottom: 20 }}>
-          <h1 style={{ fontSize: 22, fontWeight: 700, color: C.dark, margin: "4px 0" }}>{inv.name}</h1>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, margin: "4px 0" }}>{inv.name}</h1>
         </div>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
-          <MetricCard label="Текущий баланс" value={"$" + fmtI(inv.balance)} />
-          <MetricCard label="Свободные средства" value={"$" + fmtI(inv.free)} />
+          <MetricCard label="Текущий баланс" value={"$" + fmtI(inv.balance)} color={C.teal} />
+          <MetricCard label="Свободные средства" value={"$" + fmtI(inv.free)} color={C.teal} />
           <MetricCard label="Доходность" value={(pp >= 0 ? "+" : "") + pp.toFixed(2) + "%"} color={pnl >= 0 ? C.green : C.red} sub={(pnl >= 0 ? "+$" : "\u2212$") + fmtI(Math.abs(pnl))} />
         </div>
         <ProfitChart inv={inv} defaultRange="7d" />
         <DealTable deals={inv.deals} defaultFilter="active" />
       </main>
-      <footer style={{ textAlign: "center", padding: "24px 20px", color: C.gray, fontSize: 11, borderTop: "1px solid " + C.gl, marginTop: 32 }}>
+      <footer style={{ textAlign: "center", padding: "24px 20px", color: C.gray, fontSize: 13, borderTop: "1px solid " + C.gl, marginTop: 32 }}>
         <Logo height={22} />
         <p style={{ margin: "8px 0 0" }}>Fiorex Group &copy; 2025 &middot; Инвестируем с мыслью о будущем</p>
       </footer>
@@ -534,12 +599,12 @@ function InvestorDetail({ inv, onBack }) {
 
   return (
     <div>
-      <button onClick={onBack} style={{ background: "none", border: "none", cursor: "pointer", color: C.teal, fontSize: 13, fontWeight: 600, fontFamily: "inherit", marginBottom: 16, padding: 0 }}>{"\u2190"} Назад</button>
+      <button onClick={onBack} style={{ background: "none", border: "none", cursor: "pointer", color: C.teal, fontSize: 14, fontWeight: 600, fontFamily: "inherit", marginBottom: 16, padding: 0 }}>{"\u2190"} Назад</button>
       <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 4 }}>
-        <span style={{ padding: "4px 12px", borderRadius: 6, fontSize: 13, fontWeight: 700, background: "rgba(61,121,121,0.1)", color: C.teal }}>{inv.id}</span>
-        <h1 style={{ fontSize: 22, fontWeight: 700, color: C.dark, margin: 0 }}>{inv.name}</h1>
+        <span style={{ padding: "4px 12px", borderRadius: 6, fontSize: 14, fontWeight: 700, background: "rgba(61,121,121,0.1)", color: C.teal }}>{inv.id}</span>
+        <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, margin: 0 }}>{inv.name}</h1>
       </div>
-      <p style={{ fontSize: 13, color: C.gray, marginBottom: 20 }}>Комиссия: {inv.fee} &middot; Тел: +7 {fmtPh(inv.phone)}</p>
+      <p style={{ fontSize: 14, color: C.gray, marginBottom: 20 }}>Комиссия: {inv.fee} &middot; Тел: +7 {fmtPh(inv.phone)}</p>
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
         <MetricCard label="Вложено" value={"$" + fmtI(inv.deposit)} />
         <MetricCard label="Баланс" value={"$" + fmtI(inv.balance)} />
@@ -585,15 +650,15 @@ function AdminPanel({ onLogout }) {
       <Header onLogout={onLogout} sub="Панель управления" />
       <div style={{ display: "flex", gap: 4, padding: "12px 20px", background: C.white, borderBottom: "1px solid " + C.gl, overflowX: "auto" }}>
         {navItems.map(function(t) {
-          return <button key={t.id} onClick={function() { setTab(t.id); setSel(null); }} style={{ padding: "8px 16px", border: "none", borderRadius: 6, cursor: "pointer", fontSize: 13, fontWeight: 600, fontFamily: "inherit", whiteSpace: "nowrap", background: tab === t.id ? "rgba(61,121,121,0.1)" : "transparent", color: tab === t.id ? C.teal : C.gray }}>{t.l}</button>;
+          return <button key={t.id} onClick={function() { setTab(t.id); setSel(null); }} style={{ padding: "8px 16px", border: "none", borderRadius: 6, cursor: "pointer", fontSize: 14, fontWeight: 600, fontFamily: "inherit", whiteSpace: "nowrap", background: tab === t.id ? "rgba(61,121,121,0.1)" : "transparent", color: tab === t.id ? C.teal : C.gray }}>{t.l}</button>;
         })}
       </div>
       <main style={{ padding: "24px 20px", maxWidth: 1200, margin: "0 auto" }}>
 
         {tab === "overview" ? (
           <div>
-            <h1 style={{ fontSize: 22, fontWeight: 700, color: C.dark, marginBottom: 4 }}>Обзор портфеля</h1>
-            <p style={{ fontSize: 13, color: C.gray, marginBottom: 24 }}>Fiorex Group</p>
+            <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 4 }}>Обзор портфеля</h1>
+            <p style={{ fontSize: 14, color: C.gray, marginBottom: 24 }}>Fiorex Group</p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28 }}>
               <MetricCard label="Всего вложено" value={"$" + fmtI(tD)} />
               <MetricCard label="Текущий баланс" value={"$" + fmtI(tB)} />
@@ -603,7 +668,7 @@ function AdminPanel({ onLogout }) {
               <MetricCard label="Entry Fee 2%" value={"$" + fmt(totalLLLEntry)} color="#8B5CF6" />
               <MetricCard label="Success Fee 5%" value={"$" + fmt(totalLLLSuccess)} color="#8B5CF6" />
             </div>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: C.dark, marginBottom: 12 }}>Инвесторы</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 700, color: C.dark, marginBottom: 12 }}>Инвесторы</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16 }}>
               {allInv.map(function(inv) {
                 var pnl = inv.balance - inv.deposit;
@@ -614,18 +679,18 @@ function AdminPanel({ onLogout }) {
                   <Card key={inv.id} style={{ cursor: "pointer", border: "1px solid " + C.gl }} onClick={function() { setTab("investors"); setSel(inv.id); }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
                       <div>
-                        <span style={{ fontSize: 11, fontWeight: 700, color: C.teal, background: "rgba(61,121,121,0.08)", padding: "2px 8px", borderRadius: 4 }}>{inv.id}</span>
-                        <div style={{ fontSize: 15, fontWeight: 700, color: C.dark, marginTop: 6 }}>{inv.name}</div>
+                        <span style={{ fontSize: 12, fontWeight: 700, color: C.teal, background: "rgba(61,121,121,0.08)", padding: "2px 8px", borderRadius: 4 }}>{inv.id}</span>
+                        <div style={{ fontSize: 16, fontWeight: 700, color: C.dark, marginTop: 6 }}>{inv.name}</div>
                       </div>
-                      <div style={{ textAlign: "right", fontSize: 12, color: C.gray }}>
+                      <div style={{ textAlign: "right", fontSize: 13, color: C.gray }}>
                         <div>Fee: <b style={{ color: C.beige }}>{inv.fee}</b></div>
                         <div>WR: <b style={{ color: C.teal }}>{closed.length > 0 ? ((wins / closed.length) * 100).toFixed(0) : 0}%</b></div>
                       </div>
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, fontSize: 13 }}>
-                      <div><div style={{ fontSize: 10, color: C.gray }}>Вложено</div><div style={{ fontWeight: 700 }}>${fmtI(inv.deposit)}</div></div>
-                      <div><div style={{ fontSize: 10, color: C.gray }}>Баланс</div><div style={{ fontWeight: 700 }}>${fmtI(inv.balance)}</div></div>
-                      <div><div style={{ fontSize: 10, color: C.gray }}>P&L</div><div style={{ fontWeight: 700, color: pnl >= 0 ? C.green : C.red }}>{pp >= 0 ? "+" : ""}{pp.toFixed(1)}%</div></div>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, fontSize: 14 }}>
+                      <div><div style={{ fontSize: 12, color: C.gray }}>Вложено</div><div style={{ fontWeight: 700 }}>${fmtI(inv.deposit)}</div></div>
+                      <div><div style={{ fontSize: 12, color: C.gray }}>Баланс</div><div style={{ fontWeight: 700 }}>${fmtI(inv.balance)}</div></div>
+                      <div><div style={{ fontSize: 12, color: C.gray }}>P&L</div><div style={{ fontWeight: 700, color: pnl >= 0 ? C.green : C.red }}>{pp >= 0 ? "+" : ""}{pp.toFixed(1)}%</div></div>
                     </div>
                   </Card>
                 );
@@ -636,16 +701,16 @@ function AdminPanel({ onLogout }) {
 
         {tab === "investors" && !sel ? (
           <div>
-            <h1 style={{ fontSize: 22, fontWeight: 700, color: C.dark, marginBottom: 20 }}>Все инвесторы</h1>
+            <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 20 }}>Все инвесторы</h1>
             {allInv.map(function(inv) {
               return (
                 <Card key={inv.id} style={{ marginBottom: 12, cursor: "pointer", border: "1px solid " + C.gl }} onClick={function() { setSel(inv.id); }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <span style={{ fontSize: 12, fontWeight: 700, color: C.teal, background: "rgba(61,121,121,0.08)", padding: "4px 10px", borderRadius: 5 }}>{inv.id}</span>
-                      <span style={{ fontSize: 15, fontWeight: 700, color: C.dark }}>{inv.name}</span>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: C.teal, background: "rgba(61,121,121,0.08)", padding: "4px 10px", borderRadius: 5 }}>{inv.id}</span>
+                      <span style={{ fontSize: 16, fontWeight: 700, color: C.dark }}>{inv.name}</span>
                     </div>
-                    <div style={{ display: "flex", gap: 20, fontSize: 13, flexWrap: "wrap" }}>
+                    <div style={{ display: "flex", gap: 20, fontSize: 14, flexWrap: "wrap" }}>
                       <div><span style={{ color: C.gray }}>Баланс: </span><b>${fmtI(inv.balance)}</b></div>
                       <div><span style={{ color: C.gray }}>Свободные: </span><b>${fmtI(inv.free)}</b></div>
                       <div><span style={{ color: C.gray }}>Сделок: </span><b>{inv.deals.length}</b></div>
@@ -663,8 +728,8 @@ function AdminPanel({ onLogout }) {
 
         {tab === "deals" ? (
           <div>
-            <h1 style={{ fontSize: 22, fontWeight: 700, color: C.dark, marginBottom: 4 }}>Все сделки</h1>
-            <p style={{ fontSize: 13, color: C.gray, marginBottom: 20 }}>Начальная сумма: $75,000 &middot; Свободные: $16,111.89</p>
+            <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, marginBottom: 4 }}>Все сделки</h1>
+            <p style={{ fontSize: 14, color: C.gray, marginBottom: 20 }}>Начальная сумма: $75,000 &middot; Свободные: $16,111.89</p>
             <DealTable deals={SP_DEALS} spMode defaultFilter="active" title="Сделки SP" />
           </div>
         ) : null}
@@ -674,12 +739,18 @@ function AdminPanel({ onLogout }) {
 }
 
 function App() {
-  var _r = useState(null); var role = _r[0]; var setRole = _r[1];
-  var _i = useState(null); var iid = _i[0]; var setIid = _i[1];
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem("fiorex_session")); } catch(e) {}
+  var _r = useState(saved ? saved.role : null); var role = _r[0]; var setRole = _r[1];
+  var _i = useState(saved ? saved.iid : null); var iid = _i[0]; var setIid = _i[1];
 
-  function logout() { setRole(null); setIid(null); }
+  function handleLogin(r, id) {
+    setRole(r); setIid(id);
+    try { localStorage.setItem("fiorex_session", JSON.stringify({ role: r, iid: id })); } catch(e) {}
+  }
+  function logout() { setRole(null); setIid(null); try { localStorage.removeItem("fiorex_session"); } catch(e) {} }
 
-  if (!role) return <LoginScreen onLogin={function(r, id) { setRole(r); setIid(id); }} />;
+  if (!role) return <LoginScreen onLogin={handleLogin} />;
   if (role === "investor") return <InvestorPortal investorId={iid} onLogout={logout} />;
   return <AdminPanel onLogout={logout} />;
 }
