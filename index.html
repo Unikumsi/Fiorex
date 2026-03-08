@@ -387,29 +387,36 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
     closed: deals.filter(function(d) { return d.status === "closed"; }).length,
   };
 
+  var showStatus = (flt === "all");
+  var isInvestorView = !spMode && !showFees && !showInvestor;
+
   var headers;
   if (spMode) {
     headers = ["Название", "Тикер", "Вход", "Выход", "Сумма покупки", "Покупка клиент", "Кол-во", "Цена", "Entry Fee", "Сумма продажи", "Итог", "Success Fee", "P&L", "Статус"];
   } else if (showFees) {
-    headers = ["Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "EF 2%", "SF 5%", "P&L", "P&L %", "Статус"];
+    headers = ["Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "EF 2%", "SF 5%", "P&L", "P&L %"];
+    if (showStatus) headers.push("Статус");
   } else if (showInvestor) {
-    headers = ["Инв.", "Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "P&L", "P&L%", "Статус"];
+    headers = ["Инв.", "Название", "Тикер", "Вход", "Выход", "Сумма входа", "Текущая сумма", "P&L", "P&L%"];
+    if (showStatus) headers.push("Статус");
   } else {
-    headers = ["Название", "Тикер", "Дата входа", "Дата выхода", "Сумма входа", "Текущая сумма", "P&L", "P&L %", "Статус"];
+    headers = ["Название", "Тикер", "Дата входа", "Дата выхода", "Сумма входа", "Текущая сумма", "P&L", "P&L %"];
+    if (showStatus) headers.push("Статус");
   }
 
-  var isInvestorView = !spMode && !showFees && !showInvestor;
   var colCount = headers.length;
 
   var filters = [
-    { id: "active", l: "Активные (" + cn.active + ")" },
-    { id: "closed", l: "Закрытые (" + cn.closed + ")" },
-    { id: "all", l: "Все (" + cn.all + ")" },
+    { id: "active", l: "Активные" },
+    { id: "closed", l: "Закрытые" },
+    { id: "all", l: "Все" },
   ];
 
   function toggleExpand(i) {
     setExpanded(expanded === i ? null : i);
   }
+
+  var cellBase = { padding: "8px", textAlign: "center" };
 
   return (
     <div>
@@ -433,9 +440,8 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, tableLayout: "auto" }}>
             <thead>
               <tr style={{ borderBottom: "2px solid " + C.gl }}>
-                {isInvestorView ? <th style={{ width: 28 }}></th> : null}
-                {headers.map(function(h) {
-                  return <th key={h} style={{ padding: "12px 8px", textAlign: "left", fontSize: 12, fontWeight: 700, color: C.beige, textTransform: "uppercase", whiteSpace: "nowrap", letterSpacing: 0.5 }}>{h}</th>;
+                {headers.map(function(h, hi) {
+                  return <th key={h} style={{ padding: "12px 8px", textAlign: hi === 0 ? "left" : "center", fontSize: 12, fontWeight: 700, color: C.beige, textTransform: "uppercase", whiteSpace: "nowrap", letterSpacing: 0.5 }}>{h}</th>;
                 })}
               </tr>
             </thead>
@@ -445,57 +451,56 @@ function DealTable({ deals, showInvestor, showFees, spMode, defaultFilter, title
                 if (spMode) {
                   return (
                     <tr key={i} style={{ borderBottom: "1px solid " + C.bg }}>
-                      <td style={{ padding: "8px", fontWeight: 600, whiteSpace: "nowrap", color: C.dark }}>{d.name}</td>
-                      <td style={{ padding: "8px", color: C.teal, fontWeight: 700, fontSize: 13 }}>{d.ticker}</td>
-                      <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateIn)}</td>
-                      <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateOut)}</td>
-                      <td style={{ padding: "8px" }}>${fmt(d.totalBuy)}</td>
-                      <td style={{ padding: "8px" }}>${fmt(d.clientBuy)}</td>
-                      <td style={{ padding: "8px", color: C.gray }}>{d.qty}</td>
-                      <td style={{ padding: "8px" }}>${fmt(d.buyPrice)}</td>
-                      <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>${fmt(d.entryFee)}</td>
-                      <td style={{ padding: "8px" }}>{d.totalSell ? "$" + fmt(d.totalSell) : "\u2014"}</td>
-                      <td style={{ padding: "8px" }}><PnlCell value={d.pnlGross} /></td>
-                      <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>{d.successFee ? "$" + fmt(d.successFee) : "\u2014"}</td>
-                      <td style={{ padding: "8px" }}><PnlCell value={d.pnlNet} /></td>
-                      <td style={{ padding: "8px" }}><Badge status={d.status} /></td>
+                      <td style={Object.assign({}, cellBase, { textAlign: "left", fontWeight: 600, whiteSpace: "nowrap", color: C.dark })}>{d.name}</td>
+                      <td style={Object.assign({}, cellBase, { color: C.teal, fontWeight: 700, fontSize: 13 })}>{d.ticker}</td>
+                      <td style={Object.assign({}, cellBase, { color: C.gray })}>{fmtD(d.dateIn)}</td>
+                      <td style={Object.assign({}, cellBase, { color: C.gray })}>{fmtD(d.dateOut)}</td>
+                      <td style={cellBase}>${fmt(d.totalBuy)}</td>
+                      <td style={cellBase}>${fmt(d.clientBuy)}</td>
+                      <td style={Object.assign({}, cellBase, { color: C.gray })}>{d.qty}</td>
+                      <td style={cellBase}>${fmt(d.buyPrice)}</td>
+                      <td style={Object.assign({}, cellBase, { color: "#8B5CF6", fontWeight: 600 })}>${fmt(d.entryFee)}</td>
+                      <td style={cellBase}>{d.totalSell ? "$" + fmt(d.totalSell) : "\u2014"}</td>
+                      <td style={cellBase}><PnlCell value={d.pnlGross} /></td>
+                      <td style={Object.assign({}, cellBase, { color: "#8B5CF6", fontWeight: 600 })}>{d.successFee ? "$" + fmt(d.successFee) : "\u2014"}</td>
+                      <td style={cellBase}><PnlCell value={d.pnlNet} /></td>
+                      <td style={cellBase}><Badge status={d.status} /></td>
                     </tr>
                   );
                 }
 
                 var mainRow = (
                   <tr key={"row-" + i} onClick={isInvestorView ? function() { toggleExpand(i); } : undefined} style={{ borderBottom: isOpen ? "none" : "1px solid " + C.bg, cursor: isInvestorView ? "pointer" : "default", background: isOpen ? "rgba(61,121,121,0.03)" : "transparent", transition: "background 0.15s" }}>
-                    {isInvestorView ? <td style={{ padding: "8px 4px 8px 10px", fontSize: 16, color: C.teal, fontWeight: 500, width: 28 }}>{isOpen ? "\u25BC" : "\u25B6"}</td> : null}
                     {showInvestor
-                      ? <td style={{ padding: "8px", fontSize: 12, fontWeight: 700, color: C.teal }}>{d.iid}</td>
+                      ? <td style={Object.assign({}, cellBase, { fontSize: 12, fontWeight: 700, color: C.teal })}>{d.iid}</td>
                       : null
                     }
-                    <td style={{ padding: "8px", fontWeight: 600, whiteSpace: "nowrap", color: C.dark }}>{d.name}</td>
-                    <td style={{ padding: "8px", color: C.teal, fontWeight: 700, fontSize: 13 }}>{d.ticker}</td>
-                    <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateIn)}</td>
-                    <td style={{ padding: "8px", fontSize: 14, color: C.gray }}>{fmtD(d.dateOut)}</td>
-                    <td style={{ padding: "8px" }}>${fmt(d.buy)}</td>
-                    <td style={{ padding: "8px", fontWeight: 500 }}>${fmt(d.sell)}</td>
-                    {showFees ? <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>${fmt(d.entryFee * 2 / 7)}</td> : null}
-                    {showFees ? <td style={{ padding: "8px", color: "#8B5CF6", fontWeight: 600 }}>{d.successFee ? "$" + fmt(d.successFee * 5 / 25) : "\u2014"}</td> : null}
-                    <td style={{ padding: "8px" }}><PnlCell value={d.pnl} /></td>
-                    <td style={{ padding: "8px" }}><PnlCell value={d.pct} isPct /></td>
-                    <td style={{ padding: "8px" }}><Badge status={d.status} /></td>
+                    <td style={Object.assign({}, cellBase, { textAlign: "left", fontWeight: 600, whiteSpace: "nowrap", color: C.dark })}>{d.name}</td>
+                    <td style={Object.assign({}, cellBase, { color: C.teal, fontWeight: 700, fontSize: 13 })}>{d.ticker}</td>
+                    <td style={Object.assign({}, cellBase, { color: C.gray })}>{fmtD(d.dateIn)}</td>
+                    <td style={Object.assign({}, cellBase, { color: C.gray })}>{fmtD(d.dateOut)}</td>
+                    <td style={cellBase}>${fmt(d.buy)}</td>
+                    <td style={Object.assign({}, cellBase, { fontWeight: 500 })}>${fmt(d.sell)}</td>
+                    {showFees ? <td style={Object.assign({}, cellBase, { color: "#8B5CF6", fontWeight: 600 })}>${fmt(d.entryFee * 2 / 7)}</td> : null}
+                    {showFees ? <td style={Object.assign({}, cellBase, { color: "#8B5CF6", fontWeight: 600 })}>{d.successFee ? "$" + fmt(d.successFee * 5 / 25) : "\u2014"}</td> : null}
+                    <td style={cellBase}><PnlCell value={d.pnl} /></td>
+                    <td style={cellBase}><PnlCell value={d.pct} isPct /></td>
+                    {showStatus ? <td style={cellBase}><Badge status={d.status} /></td> : null}
                   </tr>
                 );
 
                 if (isInvestorView && isOpen) {
                   var expandRow = (
                     <tr key={"exp-" + i} style={{ borderBottom: "1px solid " + C.bg, background: "rgba(61,121,121,0.03)" }}>
-                      <td colSpan={colCount + 1} style={{ padding: "0 12px 14px 42px" }}>
+                      <td colSpan={colCount} style={{ padding: "0 12px 14px 16px" }}>
                         <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "center" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                             <span style={{ fontSize: 14, color: C.gray }}>Entry Fee:</span>
-                            <span style={{ fontSize: 16, fontWeight: 700, color: "#8B5CF6" }}>{d.entryFee != null ? "$" + fmt(d.entryFee) : "\u2014"}</span>
+                            <span style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>{d.entryFee != null ? "$" + fmt(d.entryFee) : "\u2014"}</span>
                           </div>
-                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                             <span style={{ fontSize: 14, color: C.gray }}>Success Fee:</span>
-                            <span style={{ fontSize: 16, fontWeight: 700, color: "#8B5CF6" }}>{d.successFee && d.successFee > 0 ? "$" + fmt(d.successFee) : "\u2014"}</span>
+                            <span style={{ fontSize: 14, fontWeight: 600, color: C.dark }}>{d.successFee && d.successFee > 0 ? "$" + fmt(d.successFee) : "\u2014"}</span>
                           </div>
                         </div>
                       </td>
@@ -540,7 +545,7 @@ function LoginScreen({ onLogin }) {
           <label style={{ display: "block", fontSize: 14, fontWeight: 600, color: C.dark, marginBottom: 6 }}>Номер телефона</label>
           <div style={{ display: "flex", alignItems: "center", border: "1.5px solid " + C.gl, borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
             <span style={{ padding: "12px 0 12px 14px", fontSize: 16, color: C.gray, fontWeight: 600, whiteSpace: "nowrap" }}>+7 </span>
-            <input type="tel" placeholder="(900) 111-22-33" value={fmtPh(ph)} onChange={function(e) { setPh(e.target.value.replace(/\D/g, "").slice(0, 10)); setErr(""); }} onKeyDown={function(e) { if (e.key === "Enter") go(); }}
+            <input type="tel" placeholder="900 111 22 33" value={ph} onChange={function(e) { setPh(e.target.value.replace(/\D/g, "").slice(0, 10)); setErr(""); }} onKeyDown={function(e) { if (e.key === "Enter") go(); }}
               style={{ flex: 1, padding: "12px 14px 12px 2px", border: "none", fontSize: 16, fontFamily: "inherit", outline: "none", background: "transparent" }} />
           </div>
           <label style={{ display: "block", fontSize: 14, fontWeight: 600, color: C.dark, marginBottom: 6 }}>Пароль</label>
@@ -573,8 +578,8 @@ function InvestorPortal({ investorId, onLogout }) {
           <h1 style={{ fontSize: 26, fontWeight: 700, color: C.dark, margin: "4px 0" }}>{inv.name}</h1>
         </div>
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
-          <MetricCard label="Текущий баланс" value={"$" + fmtI(inv.balance)} color={C.teal} />
-          <MetricCard label="Свободные средства" value={"$" + fmtI(inv.free)} color={C.teal} />
+          <MetricCard label="Текущий баланс" value={"$" + fmtI(inv.balance)} />
+          <MetricCard label="Свободные средства" value={"$" + fmtI(inv.free)} />
           <MetricCard label="Доходность" value={(pp >= 0 ? "+" : "") + pp.toFixed(2) + "%"} color={pnl >= 0 ? C.green : C.red} sub={(pnl >= 0 ? "+$" : "\u2212$") + fmtI(Math.abs(pnl))} />
         </div>
         <ProfitChart inv={inv} defaultRange="7d" />
